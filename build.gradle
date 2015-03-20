@@ -12,6 +12,7 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url "http://dl.bintray.com/arnoult-antoine/maven/" }
         jcenter()
     }
 }
