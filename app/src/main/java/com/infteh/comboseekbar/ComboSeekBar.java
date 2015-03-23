@@ -44,7 +44,7 @@ public class ComboSeekBar extends SeekBar {
 		super(context, attrs);
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ComboSeekBar);
 
-		mColor = a.getColor(R.styleable.ComboSeekBar_color, Color.WHITE);
+		mColor = a.getColor(R.styleable.ComboSeekBar_myColor, Color.WHITE);
 		mTextSize = a.getDimensionPixelSize(R.styleable.ComboSeekBar_textSize, 5);
 		mIsMultiline = a.getBoolean(R.styleable.ComboSeekBar_multiline, false);
 		// do something with str
