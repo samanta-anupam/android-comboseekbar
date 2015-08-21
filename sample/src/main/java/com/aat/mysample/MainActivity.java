@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.infteh.comboseekbar.ComboSeekBar;
+
+import java.util.ArrayList;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -12,6 +16,17 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        ComboSeekBar seekBar = (ComboSeekBar) this.findViewById(R.id.ComboSeekBar);
+
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("first");
+        list.add("second");
+        list.add("third");
+        list.add("fourth");
+        seekBar.setAdapter(list);
+        seekBar.setMax(4);
+        seekBar.setVerticalTextOffset(-100);
     }
 
 
