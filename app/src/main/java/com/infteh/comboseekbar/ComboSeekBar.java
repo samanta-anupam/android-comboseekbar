@@ -109,6 +109,7 @@ public class ComboSeekBar extends SeekBar {
 			dot.id = index++;
 			mDots.add(dot);
 		}
+		this.setMax(dots.size());
 		initDotsCoordinates();
 	}
 
@@ -149,7 +150,7 @@ public class ComboSeekBar extends SeekBar {
 					handleClick(mDots.get(mDots.size() - 1));
 				} else {
 					for (int i = 0; i < mDots.size(); i++) {
-						if (Math.abs(mDots.get(i).mX - bounds.centerX()) <= (intervalWidth / 2)) {
+						if (this.getProgress() == i) {
 							bounds.right = mDots.get(i).mX;
 							bounds.left = mDots.get(i).mX;
 							mThumb.setBounds(bounds);
