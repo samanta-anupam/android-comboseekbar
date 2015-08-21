@@ -110,7 +110,7 @@ public class CustomDrawable extends Drawable {
 			return;
 		}
 		for (Dot dot : mDots) {
-			drawText(canvas, dot, dot.mX, height + 50);
+			drawText(canvas, dot, dot.mX, height);
 			if (dot.isSelected) {
 				canvas.drawLine(mDots.get(0).mX, height, dot.mX, height, selectLinePaint);
 				canvas.drawLine(dot.mX, height, mDots.get(mDots.size() - 1).mX, height, unselectLinePaint);
