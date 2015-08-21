@@ -37,13 +37,15 @@ public class CustomDrawable extends Drawable {
 	private float mTextMargin;
 	private int mTextHeight;
 	private boolean mIsMultiline;
+	private int mVerticalTextOffset;
 
-	public CustomDrawable(Drawable base, ComboSeekBar slider, float thumbRadius, List<Dot> dots, int color, int textSize, boolean isMultiline) {
+	public CustomDrawable(Drawable base, ComboSeekBar slider, float thumbRadius, List<Dot> dots, int color, int textSize, boolean isMultiline, int verticalTextOffset) {
 		mIsMultiline = isMultiline;
 		mySlider = slider;
 		myBase = base;
 		mDots = dots;
 		mTextSize = textSize;
+		this.mVerticalTextOffset = verticalTextOffset;
 		textUnselected = new Paint(Paint.ANTI_ALIAS_FLAG);
 		textUnselected.setColor(color);
 		textUnselected.setAlpha(255);
@@ -108,7 +110,7 @@ public class CustomDrawable extends Drawable {
 			return;
 		}
 		for (Dot dot : mDots) {
-			drawText(canvas, dot, dot.mX, height);
+			drawText(canvas, dot, dot.mX, height + 50);
 			if (dot.isSelected) {
 				canvas.drawLine(mDots.get(0).mX, height, dot.mX, height, selectLinePaint);
 				canvas.drawLine(dot.mX, height, mDots.get(mDots.size() - 1).mX, height, unselectLinePaint);
@@ -149,7 +151,7 @@ public class CustomDrawable extends Drawable {
 				yres = y + mTextHeight;
 			}
 		} else {
-			yres = y - (mDotRadius * 2) + mTextMargin;
+			yres = y - (mDotRadius * 2) + mTextMargin + this.mVerticalTextOffset;
 		}
 
 		if (dot.isSelected) {
@@ -164,7 +166,7 @@ public class CustomDrawable extends Drawable {
 		if (mIsMultiline) {
 			return (int) (selectLinePaint.getStrokeWidth() + mDotRadius + (mTextHeight) * 2  + mTextMargin);
 		} else {
-			return (int) (mThumbRadius + mTextMargin + mTextHeight + mDotRadius);
+			return (int) (mThumbRadius + mTextMargin + mTextHeight + mDotRadius + Math.abs(this.mVerticalTextOffset));
 		}
 	}
 

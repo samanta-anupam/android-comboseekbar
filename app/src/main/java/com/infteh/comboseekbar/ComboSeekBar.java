@@ -25,6 +25,16 @@ public class ComboSeekBar extends SeekBar {
 	private int mColor;
 	private int mTextSize;
 	private boolean mIsMultiline;
+	private int verticalTextOffset;
+
+	public int getVerticalTextOffset() {
+		return this.verticalTextOffset;
+	}
+
+	public void setVerticalTextOffset(int offset) {
+		this.verticalTextOffset = offset;
+		setProgressDrawable(new CustomDrawable(this.getProgressDrawable(), this, mThumb.getRadius(), mDots, mColor, mTextSize, mIsMultiline, this.verticalTextOffset));
+	}
 
 	/**
 	 * @param context
@@ -52,7 +62,7 @@ public class ComboSeekBar extends SeekBar {
 		a.recycle();
 		mThumb = new CustomThumbDrawable(context, mColor);
 		setThumb(mThumb);
-		setProgressDrawable(new CustomDrawable(this.getProgressDrawable(), this, mThumb.getRadius(), mDots, mColor, mTextSize, mIsMultiline));
+		setProgressDrawable(new CustomDrawable(this.getProgressDrawable(), this, mThumb.getRadius(), mDots, mColor, mTextSize, mIsMultiline, this.verticalTextOffset));
 
 		// по умолчанию не равно 0 и это проблема
 		setPadding(0, 0, 0, 0);
@@ -71,7 +81,7 @@ public class ComboSeekBar extends SeekBar {
 	public void setColor(int color) {
 		mColor = color;
 		mThumb.setColor(color);
-		setProgressDrawable(new CustomDrawable((CustomDrawable) this.getProgressDrawable(), this, mThumb.getRadius(), mDots, color, mTextSize, mIsMultiline));
+		setProgressDrawable(new CustomDrawable((CustomDrawable) this.getProgressDrawable(), this, mThumb.getRadius(), mDots, color, mTextSize, mIsMultiline, this.verticalTextOffset));
 	}
 
 	public synchronized void setSelection(int position) {
