@@ -84,22 +84,6 @@ public class ComboSeekBar extends SeekBar {
 		setProgressDrawable(new CustomDrawable((CustomDrawable) this.getProgressDrawable(), this, mThumb.getRadius(), mDots, color, mTextSize, mIsMultiline, this.verticalTextOffset));
 	}
 
-	public synchronized void setSelection(int position) {
-		if ((position < 0) || (position >= mDots.size())) {
-			throw new IllegalArgumentException("Position is out of bounds:" + position);
-		}
-		for (Dot dot : mDots) {
-			if (dot.id == position) {
-				dot.isSelected = true;
-			} else {
-				dot.isSelected = false;
-			}
-		}
-
-		isSelected = true;
-		invalidate();
-	}
-
 	public void setAdapter(List<String> dots) {
 		mDots.clear();
 		int index = 0;
@@ -135,30 +119,17 @@ public class ComboSeekBar extends SeekBar {
 					}
 				}
 			} else {
-				int intervalWidth = mDots.get(1).mX - mDots.get(0).mX;
 				Rect bounds = mThumb.copyBounds();
-				// find nearest dot
-				if ((mDots.get(mDots.size() - 1).mX - bounds.centerX()) < 0) {
-					bounds.right = mDots.get(mDots.size() - 1).mX;
-					bounds.left = mDots.get(mDots.size() - 1).mX;
-					mThumb.setBounds(bounds);
 
-					for (Dot dot : mDots) {
-						dot.isSelected = false;
-					}
-					mDots.get(mDots.size() - 1).isSelected = true;
-					handleClick(mDots.get(mDots.size() - 1));
-				} else {
-					for (int i = 0; i < mDots.size(); i++) {
-						if (this.getProgress() == i) {
-							bounds.right = mDots.get(i).mX;
-							bounds.left = mDots.get(i).mX;
-							mThumb.setBounds(bounds);
-							mDots.get(i).isSelected = true;
-							handleClick(mDots.get(i));
-						} else {
-							mDots.get(i).isSelected = false;
-						}
+				for (int i = 0; i < mDots.size(); i++) {
+					if (this.getProgress() == i) {
+						bounds.right = mDots.get(i).mX;
+						bounds.left = mDots.get(i).mX;
+						mThumb.setBounds(bounds);
+						mDots.get(i).isSelected = true;
+						handleClick(mDots.get(i));
+					} else {
+						mDots.get(i).isSelected = false;
 					}
 				}
 			}

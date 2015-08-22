@@ -25,8 +25,7 @@ public class MainActivity extends ActionBarActivity {
         list.add("third");
         list.add("fourth");
         seekBar.setAdapter(list);
-        seekBar.setMax(4);
-        seekBar.setVerticalTextOffset(-100);
+        seekBar.setVerticalTextOffset(-50);
     }
 
 
