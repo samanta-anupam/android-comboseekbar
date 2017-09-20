@@ -1,13 +1,12 @@
 # ComboBox + SeekBar
 
-![Screenshot](https://github.com/karabaralex/android-comboseekbar/raw/master/screenshot.png)
+![alt text](https://github.com/samanta-anupam/android-comboseekbar/raw/master/sample-seekbar.gif)
 
 ## Features
 
- * Library project
+ * ComboSeekBar, with custom thumbs at midway.
+ * Best for seekbar with steps
 
 ## Suggestions
-
-I will appreciate any help to customize and enhance the library.
-
+Original:
 Repository at <https://github.com/karabaralex/android-comboseekbar>.
